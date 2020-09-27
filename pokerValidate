@@ -1,0 +1,17 @@
+pokerValidate: arr
+|bool1 bool2 numberOfElementsInArray|.
+numberOfElementsInArray := arr size.
+"The variable bool1 checks that the amount of elements in the input array is 5"
+bool1:= true.
+"The variable bool2 checks that each element in the input array is more than 1 and less than 13"
+bool2:= true.
+"The next two lines of code check that the size of the input array is 5"
+numberOfElementsInArray == 5
+ifFalse:[bool1:=false].
+"The next two lines of code are loops that check each element of the input array and test if they are more than 1 and less than 13"
+1 to: numberOfElementsInArray  do:[:i| (arr at: i)>13 ifTrue:[bool2:=false] ifFalse:[] ].
+1 to: numberOfElementsInArray  do:[:i| (arr at: i)<1 ifTrue:[bool2:=false] ifFalse:[] ].
+"The next three lines of code check that both bool1 and bool2 are true. If they are both true then the method returns true. Otherwise it returns false"
+bool1 == true
+ifTrue:[(bool2 == true) ifTrue:[^true; cr] ifFalse:[^false;cr]]
+ifFalse: [^false].
