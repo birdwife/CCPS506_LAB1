@@ -1,0 +1,34 @@
+pokerFullHouse: arr
+|check1 onesCount numberCardsCount faceCardsCount|
+onesCount := 0.
+numberCardsCount := 0.
+faceCardsCount := 0.
+"The next three lines of code check that the array is valid"
+check1 := self pokerValidate: arr.
+check1 == true
+ifFalse:[^false].
+"This line counts the number of elements in the first rank (ones)"
+1 to: 5 do:[:i| (arr at: i) == 1 ifTrue:[ onesCount := onesCount + 1 ]   ].
+"This line counts the number of elements in the second rank (numbers)"
+1 to: 5 do:[:i| (arr at: i) >= 2 ifTrue:[ (arr at: i) <= 10 ifTrue:[ numberCardsCount := numberCardsCount + 1]  ]  ].
+"This line counts the number of elements in the third rank (faces)"
+1 to: 5 do:[:i| (arr at: i) >=11 ifTrue:[ faceCardsCount := faceCardsCount + 1 ] ].
+"The next two lines check if there are two Ones and three Number cards. The method returns true if so."
+onesCount == 2
+ifTrue:[ numberCardsCount == 3 ifTrue:[^true.]  ].
+"The next two lines check if there are three Ones and two Number cards. The method returns true if so."
+onesCount == 3
+ifTrue:[ numberCardsCount == 2 ifTrue:[^true.]  ].
+"The next two lines check if there are two Ones and three Face cards. The method returns true if so."
+onesCount == 2
+ifTrue:[ faceCardsCount == 3 ifTrue:[^true.]  ].
+"The next two lines check if there are two Ones and three Face cards. The method returns true if so."
+onesCount == 3
+ifTrue:[ faceCardsCount == 2 ifTrue:[^true.]  ].
+"The next two lines check if there are two Number and three Face cards. The method returns true if so."
+numberCardsCount  == 2
+ifTrue:[ faceCardsCount == 3 ifTrue:[^true.]  ].
+"The next two lines check if there are two Face and three Number cards. The method returns true if so."
+numberCardsCount  == 3
+ifTrue:[ faceCardsCount == 2 ifTrue:[^true.]  ].
+^false.
