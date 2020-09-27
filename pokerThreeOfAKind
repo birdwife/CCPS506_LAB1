@@ -1,0 +1,37 @@
+pokerThreeOfAKind: arr
+|check1 num1 num2 num3 num4 num5|
+"The variable check1 sends the input array to the method pokerValidate to verify that the array has 5 elements within range."
+check1 := self pokerValidate: arr.
+"The next two lines of code check that pokerValidate returned true. If not, the method returns false."
+check1 == true
+ifFalse: [ ^false ].
+"Each element of the input array is stored in a variable"
+num1 := arr at: 1.
+num2 := arr at: 2.
+num3 := arr at: 3.
+num4 := arr at: 4.
+num5 := arr at: 5.
+"A three of a kind hand can have elevent possible arrangements. The next 23 lines of code check for each arrangement and if the array does not match one of them, the method returns false "
+num1 == num2
+ifTrue: [ num2 == num3 ifTrue:[num4 == num5 ifTrue:[num1 == num4 ifFalse:[^true] ] ] ].
+num1 == num2
+ifTrue:[ num2 == num3 ifFalse:[ num3 == num5 ifTrue:[ num1 == num4 ifTrue:[^true] ] ] ].
+num1 == num2 
+ifTrue:[ num2 == num3 ifFalse:[ num3 == num4 ifTrue:[ num4 == num5 ifFalse:[ num5 == num1 ifTrue:[^true]  ] ] ]  ].
+num2 == num3
+ifTrue:[ num1 == num5 ifTrue:[ num1 == num2 ifFalse:[ num1 == num4 ifTrue:[^true] ]  ]  ].
+num1 == num3
+ifTrue:[ num2 == num4 ifTrue:[ num4 == num1 ifFalse:[ num1 == num2 ifFalse:[ num1 == num5 ifTrue:[^true]  ]  ] ]  ].
+num2 == num5
+ifTrue:[ num3 == num4 ifTrue:[ num1 == num4 ifTrue:[ num2 == num4 ifFalse:[ num3 == num1 ifTrue:[^true]  ]   ]  ]    ].
+num1 == num2
+ifTrue:[ num1 == num5 ifFalse:[num2 == num3 ifFalse:[ num3 == num4 ifTrue:[ num3 == num5 ifTrue:[^true]  ]  ]  ]   ].
+num1 == num4
+ifTrue:[ num1 == num2 ifFalse:[ num2 == num3 ifTrue:[ num3 == num5 ifTrue:[ num2 == num5 ifTrue:[^true]  ]  ]  ]   ].
+num1 == num5
+ifTrue: [ num2 == num3 ifTrue:[ num3 == num4 ifTrue:[ num1 == num2 ifFalse:[ num1 == num4 ifFalse:[^true] ] ] ]  ].
+num1 == num3
+ifTrue: [ num2 == num4 ifTrue:[ num2 == num5 ifTrue:[ num5 == num3 ifFalse:[ num2 == num3 ifFalse:[ ^true ] ]  ] ]  ].
+num1 == num2
+ifTrue: [ num2 == num3 ifFalse:[ num1 == num5 ifFalse:[ num4 == num5 ifTrue:[ num3 == num4 ifTrue:[^true]  ]  ] ] ].
+^false.
