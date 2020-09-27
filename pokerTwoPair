@@ -1,0 +1,26 @@
+pokerTwoPair: arr
+|check1 onesCount numberCardsCount faceCardsCount|
+check1 := self pokerValidate: arr.
+onesCount := 0.
+numberCardsCount := 0.
+faceCardsCount := 0.
+"The next two lines of code check that the array is valid"
+check1 == false
+ifTrue:[^false].
+"This line of code counts the elements of the array that are in the first rank (ones)"
+1 to: 5 do:[:i| (arr at: i) == 1 ifTrue:[ onesCount := onesCount + 1 ]  ].
+"This line of code counts the elements of the array that are in the second rank (numbers 2-10)"
+1 to: 5 do:[:i| (arr at: i) >= 2 ifTrue:[ (arr at: 1) <= 10 ifTrue:[ numberCardsCount := numberCardsCount + 1 ]   ]  ].
+"This line of code counts the elements of the array that are in the third rank (faces)"
+1 to: 5 do:[:i| (arr at: i) >= 11 ifTrue:[ faceCardsCount := faceCardsCount + 1  ]  ].
+"There are three possible combinations of cards that form a two-pair hand. The rest of the code tests for each combination."
+"This section checks if there are two cards in the first rank, two in the second and one in the third. If so, the method returns true."
+onesCount == 2
+ifTrue:[ (numberCardsCount == 2) ifTrue:[ (faceCardsCount == 1) ifTrue:[^true.]   ]   ].
+"This section checks if there are two cards in the first rank, one in the second one and two in the third. If so, the method returns true."
+onesCount == 2
+ifTrue:[ (numberCardsCount == 1) ifTrue:[ (faceCardsCount == 2) ifTrue:[^true.]  ]  ].
+"This section checks if there is one card in the first rank, two in the second and two in the third. If so, the method returns true."
+onesCount == 1
+ifTrue:[ (numberCardsCount == 2) ifTrue:[ (faceCardsCount == 2) ifTrue:[^true.]  ]  ].
+^false.
