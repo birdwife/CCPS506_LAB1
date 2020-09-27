@@ -1,0 +1,83 @@
+pokerStraight: arr
+|num1 num2 num3 num4 num5 check1 smallestElement counter1 counter2 counter3 counter4 counter5 counter6 counter61 counter7 counter71 counter8 counter81 counter9 counter91 switchOne|
+"The next three lines of code check if the array has five elements between 1 and 13"
+check1 := self pokerValidate: arr.
+check1 == true
+ifFalse:[^false].
+"Each element of the array is assigned a variable"
+num1 := arr at: 1.
+num2 := arr at: 2.
+num3 := arr at: 3.
+num4 := arr at: 4.
+num5 := arr at: 5.
+counter1 := 0.
+counter2 := 0.
+counter3 := 0.
+counter4 := 0.
+counter5 := 0.
+smallestElement := num1.
+"This checks to see if the first element is the smallest element"
+1 to: 5 do:[:i| num1 > (arr at: i) ifTrue:[counter1 := (counter1 + 1).] ].
+counter1 == 0
+ifTrue:[smallestElement := num1].
+"This checks to see if the second element is the smallest element"
+1 to: 5 do:[:i| num2 > (arr at: i) ifTrue:[counter2 := (counter2 + 1).] ].
+counter2 == 0
+ifTrue:[smallestElement := num2].
+"This checks to see if the third element is the smallest element"
+1 to: 5 do:[:i| num3 > (arr at: i) ifTrue:[counter3 := (counter3 + 1).] ].
+counter3 == 0
+ifTrue:[smallestElement := num3].
+"This checks to see if the fourth element is the smallest element"
+1 to: 5 do:[:i| num4 > (arr at: i) ifTrue:[counter4 := (counter4 + 1).] ].
+counter4 == 0
+ifTrue:[smallestElement := num4].
+"This checks to see if the fifth element is the smallest element"
+1 to: 5 do:[:i| num5 > (arr at: i) ifTrue:[counter5 := (counter5 + 1).] ].
+counter5 == 0
+ifTrue:[smallestElement := num5].
+"This section deals with the case where 1 is the smallest element. It searches for the next largest element and reassigns that as the smallestElement variable"
+smallestElement == 1
+ifTrue:[
+	switchOne := true.
+	1 to: 5 do: [:i| (arr at: i) == 13 ifTrue:[smallestElement := 13 ] ].
+	1 to: 5 do: [:i| (arr at: i) == 12 ifTrue:[smallestElement := 12 ] ].
+	1 to: 5 do: [:i| (arr at: i) == 11 ifTrue:[smallestElement := 11 ] ].
+	1 to: 5 do: [:i| (arr at: i) == 10 ifTrue:[smallestElement := 10 ] ].
+	1 to: 5 do: [:i| (arr at: i) == 9 ifTrue:[smallestElement := 9 ] ].
+	1 to: 5 do: [:i| (arr at: i) == 8 ifTrue:[smallestElement := 8 ] ].
+	1 to: 5 do: [:i| (arr at: i) == 7 ifTrue:[smallestElement := 7 ] ].
+	1 to: 5 do: [:i| (arr at: i) == 6 ifTrue:[smallestElement := 6 ] ].
+	1 to: 5 do: [:i| (arr at: i) == 5 ifTrue:[smallestElement := 5 ] ].
+	1 to: 5 do: [:i| (arr at: i) == 4 ifTrue:[smallestElement := 4 ] ].
+	1 to: 5 do: [:i| (arr at: i) == 3 ifTrue:[smallestElement := 3 ] ].
+	1 to: 5 do: [:i| (arr at: i) == 2 ifTrue:[smallestElement := 2 ] ]
+	].
+"This checks to see if the (smallestElement + 1) exists in the array. If it does not exist, the method returns false."
+counter6 := smallestElement + 1.
+counter61 := 0.
+1 to: 5 do:[:i| (arr at: i) == counter6 ifTrue:[counter61 := counter61 + 1]  ].
+counter61 == 0
+ifTrue:[^false].
+"This checks to see if the (smallestElement + 2) exists in the array. If it does not exist, the method returns false."
+counter7 := smallestElement + 2.
+counter71 := 0.
+1 to: 5 do:[:i| (arr at: i) == counter7 ifTrue:[ counter71 := counter71 + 1 ]  ].
+counter71 == 0
+ifTrue:[^false].
+"This checks to see if the (smallestElement + 3) exists in the array. If it does not exist, the method returns false."
+counter8 := smallestElement + 3.
+counter81 := 0.
+1 to: 5 do:[:i| (arr at: i) == counter8 ifTrue:[ counter81 := counter81 + 1 ]  ].
+counter81 == 0
+ifTrue:[^false].
+"This checks to see if the (smallestElement + 4) exists in the array. If it does not exist, the method returns false"
+switchOne == false
+ifTrue:[
+	counter9 := smallestElement + 4.
+	counter91 := 0.
+	1 to: 5 do:[:i| (arr at: i) == counter9 ifTrue:[ counter91 := counter91 + 1 ]  ].
+	counter91 == 0
+	ifTrue:[^false].
+	].
+^true.
